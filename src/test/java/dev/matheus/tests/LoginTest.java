@@ -14,10 +14,12 @@ public class LoginTest {
     private final String VALID_EMAIL = "matheus2050@gmail.com";
     private final String VALID_PASSWORD = "matheus123";
 
- /*    @BeforeAll
-    public void setUpClass() {
-        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
-    } */
+    /*
+     * @BeforeAll
+     * public void setUpClass() {
+     * System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+     * }
+     */
 
     @BeforeEach
     public void setUp() {

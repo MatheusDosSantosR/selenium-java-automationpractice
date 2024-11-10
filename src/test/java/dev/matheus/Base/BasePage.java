@@ -5,13 +5,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public abstract class BasePage {
+    private WebDriverWait waitElement;
     protected WebDriver driver;
     private WebDriverWait wait;
     private Actions action;
+    private Select select;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -75,4 +78,36 @@ public abstract class BasePage {
         WebElement element = this.driver.findElement(locator);
         action.moveToElement(element).click().build().perform();
     }
+
+    public String getTextByAttribute(By locator, String attribute) {
+        System.err.println("Retorno do value" + this.driver.findElement(locator).getAttribute(attribute));
+        return this.driver.findElement(locator).getAttribute(attribute);
+    }
+
+    public void waitElement(By locator) {
+        if (this.waitElement == null) {
+            this.waitElement = new WebDriverWait(driver, Duration.ofSeconds(10));
+        }
+        this.waitElement.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public void waitElementToBeClickable(By locator) {
+        if (this.waitElement == null) {
+            this.waitElement = new WebDriverWait(driver, Duration.ofSeconds(10));
+        }
+        this.waitElement.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public void waitElementToBeSelected(By locator) {
+        if (this.waitElement == null) {
+            this.waitElement = new WebDriverWait(driver, Duration.ofSeconds(10));
+        }
+        this.waitElement.until(ExpectedConditions.elementToBeSelected(locator));
+    }
+
+    public void selectByValue(By locator, String value) {
+        select = new Select(this.driver.findElement(locator));
+        select.selectByValue(value);
+    }
+
 }

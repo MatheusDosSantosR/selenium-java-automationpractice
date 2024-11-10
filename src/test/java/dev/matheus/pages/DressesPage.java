@@ -2,7 +2,6 @@ package dev.matheus.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
 import dev.matheus.Base.BasePage;
 
 public class DressesPage extends BasePage {
