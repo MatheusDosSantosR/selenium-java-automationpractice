@@ -1,7 +1,5 @@
 package dev.matheus.pages;
 
-import java.util.function.BooleanSupplier;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import dev.matheus.Base.BasePage;

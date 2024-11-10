@@ -3,6 +3,7 @@ package dev.matheus.Base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
@@ -10,6 +11,7 @@ import java.time.Duration;
 public abstract class BasePage {
     protected WebDriver driver;
     private WebDriverWait wait;
+    private Actions action;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -56,5 +58,21 @@ public abstract class BasePage {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public void actionMoveToElement(By locator) {
+        if (this.action == null) {
+            this.action = new Actions(driver);
+        }
+        WebElement element = this.driver.findElement(locator);
+        action.moveToElement(element).perform();
+    }
+
+    public void actionmoveToElementClickPerform(By locator) {
+        if (this.action == null) {
+            this.action = new Actions(driver);
+        }
+        WebElement element = this.driver.findElement(locator);
+        action.moveToElement(element).click().build().perform();
     }
 }
